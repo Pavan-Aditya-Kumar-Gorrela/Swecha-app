@@ -1,43 +1,52 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import authRoutes from './routes/authRoutes.js';
 import cors from 'cors';
+import http from 'http';
+import { Server as SocketServer } from 'socket.io';
 
-const app = express();
-
+import authRoutes from './routes/authRoutes.js';
+import { setupMediasoup } from './controllers/liveStream.js';
 
 dotenv.config();
 
+const app = express();
+const server = http.createServer(app); 
 
 
-// Middleware
-app.use(cors( {
+const io = new SocketServer(server, {
+  cors: {
+    origin: 'http://localhost:8081',
+    credentials: true,
+  }
+});
+
+app.use(cors({
   origin: 'http://localhost:8081',
   credentials: true,
 }));
 app.use(express.json());
 
 
-// Routes
 app.use('/api/auth', authRoutes);
 
-// Database connection
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log('MongoDB connected');
+    console.log('✅ MongoDB connected');
   } catch (error) {
-    console.error('MongoDB connection error:', error);
+    console.error('❌ MongoDB connection error:', error);
     process.exit(1);
   }
 };
 
-const PORT = process.env.PORT;
-app.listen(PORT, async () => {
+// Start server
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, async () => {
   await connectDB();
-  console.log(`Server running on port ${PORT}`);
+  await setupMediasoup(io); // ✅ Start mediasoup socket handlers
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
