@@ -12,9 +12,10 @@ import VerifyCode from './pages/VerifyCode';
 import ChangePassword from './pages/ChangePassword';
 import Home from './pages/Home';
 import EmergencyContacts from './pages/EmergencyContacts';
-// import Map from './pages/Map';
+import Map from './pages/Map';
 import SOS from './pages/SOS';
-import LiveVideoStream from './components/LiveStream'; // Correct path
+import LiveStream from './components/LiveStream'; // Correct path
+// Correct path
 
 const Stack = createStackNavigator();
 
@@ -33,9 +34,10 @@ export default function App() {
         <Stack.Screen name="ChangePassword" component={ChangePassword} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="EmergencyContacts" component={EmergencyContacts} />
-        {/* <Stack.Screen name="Map" component={Map} /> */}
+        <Stack.Screen name="Map" component={Map} />
         <Stack.Screen name="SOS" component={SOS} />
-        <Stack.Screen name="LiveVideoStream" component={LiveVideoStream} />
+        <Stack.Screen name="LiveStream" component={LiveStream} />
+        {/* Add other screens here */}
       </Stack.Navigator>
     </NavigationContainer>
   );

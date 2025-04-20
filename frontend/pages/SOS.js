@@ -2,13 +2,13 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons, Entypo, MaterialIcons } from '@expo/vector-icons';
-import LiveVideoStream from '../components/LiveStream'; // Adjust the import path as necessary
+import LiveStream from '../components/LiveStream'; // Adjust the import path as necessary
 
 function SOS() {
   const navigation = useNavigation();
 
   const features = [
-    { title: 'Live Video Stream', name: 'LiveVideoStream', screen: LiveVideoStream },
+    { title: 'Live Stream', name: 'LiveStream', screen: LiveStream },
   ];
 
   const NavIcon = ({ iconName, iconType, color, onPress }) => {
@@ -25,7 +25,7 @@ function SOS() {
   };
 
   const navigateToFeature = (screen, component) => {
-    navigation.navigate('LiveVideoStream'); // Simplified navigation
+    navigation.navigate('LiveStream'); // Simplified navigation
   };
 
   const navItems = [

@@ -1,52 +1,29 @@
 import express from 'express';
-import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import http from 'http';
-import { Server as SocketServer } from 'socket.io';
-
 import authRoutes from './routes/authRoutes.js';
-import { setupMediasoup } from './controllers/liveStream.js';
+import connectDB from './config/db.js';
+
+
 
 dotenv.config();
+connectDB()
 
 const app = express();
-const server = http.createServer(app); 
-
-
-const io = new SocketServer(server, {
-  cors: {
-    origin: 'http://localhost:8081',
-    credentials: true,
-  }
-});
-
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin: 'http://localhost:8081',
+  origin: '*',
+  methods: ['GET', 'POST'],
   credentials: true,
 }));
-app.use(express.json());
 
 
 app.use('/api/auth', authRoutes);
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log('✅ MongoDB connected');
-  } catch (error) {
-    console.error('❌ MongoDB connection error:', error);
-    process.exit(1);
-  }
-};
 
-// Start server
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, async () => {
-  await connectDB();
-  await setupMediasoup(io); // ✅ Start mediasoup socket handlers
+const PORT = process.env.PORT;
+app.listen(PORT, async () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
