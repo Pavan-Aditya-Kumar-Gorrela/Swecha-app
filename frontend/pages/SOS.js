@@ -1,18 +1,33 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { Ionicons, Entypo, MaterialIcons } from '@expo/vector-icons';
-import LiveVideoStream from '../components/LiveStream'; // Adjust the import path as necessary
+import { Entypo, Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import React from "react";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import SpyCameraDetector from "../components/HiddenCamera";
 
 function SOS() {
   const navigation = useNavigation();
 
   const features = [
-    { title: 'Live Video Stream', name: 'LiveVideoStream', screen: LiveVideoStream },
+    {
+      title: "Spy Camera",
+      name: "SpyCameraDetector",
+      screen: SpyCameraDetector,
+    },
   ];
 
   const NavIcon = ({ iconName, iconType, color, onPress }) => {
-    const IconComponent = iconType === 'Ionicons' ? Ionicons : iconType === 'Entypo' ? Entypo : MaterialIcons;
+    const IconComponent =
+      iconType === "Ionicons"
+        ? Ionicons
+        : iconType === "Entypo"
+        ? Entypo
+        : MaterialIcons;
     return (
       <TouchableOpacity onPress={onPress}>
         <IconComponent name={iconName} size={24} color={color} />
@@ -25,14 +40,14 @@ function SOS() {
   };
 
   const navigateToFeature = (screen, component) => {
-    navigation.navigate('LiveVideoStream'); // Simplified navigation
+    navigation.navigate("SpyCameraDetector"); // Simplified navigation
   };
 
   const navItems = [
-    { icon: 'home', type: 'Ionicons', color: 'white', route: 'Home' },
-    { icon: 'location-pin', type: 'Entypo', color: 'white', route: 'Map' },
-    { icon: 'sos', type: 'MaterialIcons', color: '#ff3399', route: 'SOS' },
-    { icon: 'settings', type: 'Ionicons', color: 'white', route: 'Settings' },
+    { icon: "home", type: "Ionicons", color: "white", route: "Home" },
+    { icon: "location-pin", type: "Entypo", color: "white", route: "Map" },
+    { icon: "sos", type: "MaterialIcons", color: "#ff3399", route: "SOS" },
+    { icon: "settings", type: "Ionicons", color: "white", route: "Settings" },
   ];
 
   return (
@@ -69,29 +84,34 @@ export default SOS;
 const styles = StyleSheet.create({
   container: { flex: 1 },
   content: { flex: 1, padding: 10 },
-  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20, textAlign: 'center' },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 20,
+    textAlign: "center",
+  },
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     padding: 15,
     marginBottom: 10,
     borderRadius: 10,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 3,
   },
-  cardText: { fontSize: 18, color: '#333' },
+  cardText: { fontSize: 18, color: "#333" },
   bottomNav: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 20,
     left: 30,
     right: 30,
-    backgroundColor: '#2a002a',
+    backgroundColor: "#2a002a",
     borderRadius: 30,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
     paddingVertical: 15,
   },
 });

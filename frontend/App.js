@@ -15,6 +15,7 @@ import EmergencyContacts from './pages/EmergencyContacts';
 // import Map from './pages/Map';
 import SOS from './pages/SOS';
 import LiveVideoStream from './components/LiveStream'; // Correct path
+import SpyCameraDetector from './components/HiddenCamera';
 
 const Stack = createStackNavigator();
 
@@ -35,7 +36,7 @@ export default function App() {
         <Stack.Screen name="EmergencyContacts" component={EmergencyContacts} />
         {/* <Stack.Screen name="Map" component={Map} /> */}
         <Stack.Screen name="SOS" component={SOS} />
-        <Stack.Screen name="LiveVideoStream" component={LiveVideoStream} />
+        <Stack.Screen name="SpyCameraDetector" component={SpyCameraDetector} />
       </Stack.Navigator>
     </NavigationContainer>
   );
