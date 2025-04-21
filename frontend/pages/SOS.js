@@ -2,13 +2,13 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons, Entypo, MaterialIcons } from '@expo/vector-icons';
-import LiveVideoStream from '../components/LiveStream'; // Adjust the import path as necessary
+import VoiceMessage from '../components/EmergencyVoiceRecorder'; // Adjust the import path as necessary
 
 function SOS() {
   const navigation = useNavigation();
 
   const features = [
-    { title: 'Live Video Stream', name: 'LiveVideoStream', screen: LiveVideoStream },
+    { title: 'Voice Message', component: 'VoiceMessage' },
   ];
 
   const NavIcon = ({ iconName, iconType, color, onPress }) => {
@@ -24,8 +24,8 @@ function SOS() {
     navigation.navigate(route);
   };
 
-  const navigateToFeature = (screen, component) => {
-    navigation.navigate('LiveVideoStream'); // Simplified navigation
+  const navigateToFeature = (screen) => {
+    navigation.navigate(screen); // Ensure the screen name matches the registered navigator
   };
 
   const navItems = [
@@ -43,7 +43,7 @@ function SOS() {
           <TouchableOpacity
             key={index}
             style={styles.card}
-            onPress={() => navigateToFeature(feature.component)}
+            onPress={() => navigateToFeature(feature.component)} // Correctly pass the component name
           >
             <Text style={styles.cardText}>{feature.title}</Text>
           </TouchableOpacity>
