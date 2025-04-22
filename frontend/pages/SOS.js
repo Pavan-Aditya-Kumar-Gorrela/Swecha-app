@@ -3,12 +3,13 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-nati
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons, Entypo, MaterialIcons } from '@expo/vector-icons';
 import VoiceMessage from '../components/EmergencyVoiceRecorder'; // Adjust the import path as necessary
-
+import SafeRoute from '../components/SafeRoue'; // Adjust the import path as necessary
 function SOS() {
   const navigation = useNavigation();
 
   const features = [
     { title: 'Voice Message', component: 'VoiceMessage' },
+    { title: 'SafeRoute', component: 'SafeRoute' },
   ];
 
   const NavIcon = ({ iconName, iconType, color, onPress }) => {

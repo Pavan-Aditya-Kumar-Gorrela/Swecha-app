@@ -149,19 +149,17 @@ function Home() {
     <LinearGradient colors={["#0f001a", "#3d003f"]} style={styles.container}>
       <StatusBar barStyle="light-content" />
       <SafeAreaView style={{ flex: 1 }}>
-        {/* Header */}
-        <View style={styles.header}>
-          <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-            <Ionicons name="menu" size={24} color="white" />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("Notifications")}>
-            <Ionicons name="notifications-outline" size={24} color="white" />
-          </TouchableOpacity>
-        </View>
+        /* Header */
+          <View style={styles.header}>
+            <TouchableOpacity onPress={() => navigation.navigate('NewsDrawer')}>
+              <Ionicons name="newspaper-outline" size={24} color="white" />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Notifications")}>
+              <Ionicons name="notifications-outline" size={24} color="white" />
+            </TouchableOpacity>
+          </View>
 
-        
-
-        {/* Greeting */}
+          {/* Greeting */}
         <View style={styles.greetingContainer}>
           <Text style={styles.greetingText}>Hello! User</Text>
           <Text style={styles.subText}>

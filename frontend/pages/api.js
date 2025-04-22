@@ -1,7 +1,7 @@
 const apiService = {
     async signup(email, password) {
       try {
-        const response = await fetch('http://192.168.1.5:2002/api/auth/signup', {
+        const response = await fetch('http://192.168.0.176:2002/api/auth/signup', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password }),
@@ -14,7 +14,7 @@ const apiService = {
   
     async login(email, password) {
       try {
-        const response = await fetch('http://192.168.1.5:2002/api/auth/login', {
+        const response = await fetch('http://192.168.0.176:2002/api/auth/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password }),
@@ -27,7 +27,7 @@ const apiService = {
   
     async sendVerificationCode(email) {
       try {
-        const response = await fetch('http://192.168.1.5:2002/api/auth/send-verification-code', {
+        const response = await fetch('http://192.168.0.176:2002/api/auth/send-verification-code', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email }),
@@ -40,7 +40,7 @@ const apiService = {
   
     async verifyVerificationCode(email, code) {
       try {
-        const response = await fetch('http://192.168.1.5:2002/api/auth/verify-verification-code', {
+        const response = await fetch('http://192.168.0.176:2002/api/auth/verify-verification-code', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, code }),
@@ -53,7 +53,7 @@ const apiService = {
   
     async forgotPassword(email) {
       try {
-        const response = await fetch('http://192.168.1.5:2002/api/auth/forgot-password', {
+        const response = await fetch('http://192.168.0.176:2002/api/auth/forgot-password', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email }),
@@ -66,7 +66,7 @@ const apiService = {
   
     async changePassword(email, resetToken, newPassword) {
       try {
-        const response = await fetch('http://192.168.1.5:2002/api/auth/change-password', {
+        const response = await fetch('http://192.168.0.176:2002/api/auth/change-password', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, resetToken, newPassword }),
